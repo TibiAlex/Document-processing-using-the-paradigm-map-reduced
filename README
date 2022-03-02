@@ -1,0 +1,35 @@
+Buzera Tiberiu 333CA
+
+ALGORITMI PARALELI SI DISTRIBUITI
+Tema #2 Procesarea de documente folosind paradigma Map-Reduce
+
+-Cerinta-
+Sa se implementeze un program paralel in Java pentru procesarea unui set de documente
+text primit ca input, evaluarea lungimilor cuvintelor procesate, precum si ordonarea
+documentelor in functie de lungimea cuvintelor si frecventa cu care acestea apar.
+Fiecare cuvant va avea asociata cate o valoare, in functie de numarul de litere.
+Valoarea unui cuvant este determinata de o formula bazata pe sirul lui Fibonacci.
+Rangul unui document se calculeaza insumand valorile tuturor cuvintelor din acesta.
+In plus, pentru fiecare document se va stabili cuvantul de lungime maxima
+(sau cuvintele, daca sunt mai multe cu aceeasi lungime maxima).
+
+-Folosire-
+Pentru a rula un test anume
+java Tema2 <numar_workeri> <fisier_intrare> <fisier_iesire>
+Pentru a rula scriptul
+./test.sh
+
+-Implementare-
+Am facut citirea din fisiere folosind utilitarul scanner.
+Am salvat calea catre fisiere intr-un array. Am parcurs intr-un for toate fisierele,
+am folosit ForkJoinPool cu numarul de workeri trimis ca parametru, am separat
+fisierele in taskuri si apoi am creat un map in care sa se salveze cuvintele, numarul
+de litere al cuvintelor si numarul de cuvinte cu acel numar de litere.
+
+Am dat shut down si am deschis din nou threadurile folosind ForkJoinPool, am calculat
+rangul pentru fiecare fisier si dam shut down din nou.
+Ordonez fisierele dupa rang si le scriu in fisier folosind utilitarul FileOutputStream.
+
+-Dificultati-
+Am intampinat dificultati inparsarea fisierelor in cuvinte tinand cont de separatori.
+
